@@ -9,6 +9,10 @@ from datetime import timedelta, datetime
 
 # Create your models here.
 
+# ---------------------------------------------------------------------------- #
+#                                    CLIENT                                    #
+# ---------------------------------------------------------------------------- #
+
 
 class Client(models.Model):
 
@@ -49,24 +53,28 @@ class Client(models.Model):
 
     def save(self, *args, **kwargs):
 
-      #Prepopulated time_deadline field
+      # ───────────────────── PREPOPULATED TIME DEADLINE FIELD ───────────────────── #
+
       if self.covid_test_result == 'Positive':
           self.time_deadline = datetime.now() + timedelta(days=3)
       else:
           self.time_deadline = datetime.now()
 
-      # Rest time Deadline
+      # ──────────────────────────── REST TIME DEADLINE ──────────────────────────── #
+
       if self.reset_deadline == 'RESET':
           self.time_deadline = datetime.now() + timedelta(days=3)
           self.reset_deadline = 'NO-RESET'
       else:
           pass
 
-      # Prepopulated slug
+      # ───────────────────────────── PREPOPULATED SLUG ──────────────────────────── #
+
       value = self.name + '-' + datetime.now().strftime('%Y-%m-%d-%f')
       self.slug = slugify(value)
 
-      # Qr code generator
+      # ───────────────────────────── QR CODE GENERATOR ──────────────────────────── #
+
       url = self.qr_url + self.get_absolute_url()
       qrcode_img = qrcode.make(url)
       fname = f'{self.name}-qr_code.png'

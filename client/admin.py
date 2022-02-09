@@ -14,8 +14,6 @@ class ClientAdmin(admin.ModelAdmin):
     list_per_page = 20
     list_max_show_all = 100
 
-
-
  
     def save_model(self, request, obj, form, change):
         if getattr(obj, 'url', None) is None:

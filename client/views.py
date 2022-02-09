@@ -32,10 +32,7 @@ def client_pdf_view(request, *args, **kwargs):
     response = HttpResponse(content_type='application/pdf')
 
     # find the template and render it.
-    # response['Content-Disposition'] = 'attachment; filename="report.pdf"'
-
-
-    response['Content-Disposition'] = 'filename="report.pdf"'
+    response['Content-Disposition'] = 'attachment; filename="report.pdf"'
 
     # find the template and render it.
     template = get_template(template_path)
@@ -43,10 +40,10 @@ def client_pdf_view(request, *args, **kwargs):
 
 
     # create a pdf
-    pisa_status = pisa.CreatePDF(
+    client_pdf = pisa.CreatePDF(
        html, dest=response)
     # if error then show some funy view
-    if pisa_status.err:
+    if client_pdf.err:
        return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
 
