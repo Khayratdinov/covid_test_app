@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html>
+	<head>
+
+		<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Covid Test Results</title>
+
+		<style type="text/css">
+			body {
+			  width: 800px;
+			  margin: 0 auto;
+			  padding: 10px;
+			  font-size: 18px;
+			  line-height: 0;
+			}
+
+			@page{
+			  size: A4;
+			  padding: 1cm;
+			}
+
+			table{
+			  width: 100%;
+			  border-collapse: collapse;
+			  margin-bottom: 10px;
+			}
+
+			table:last-cild{
+			  margin-bottom: 0;
+			}
+
+			td, th{
+			  font-size: 14px;
+			  padding: 4px;
+			  line-height: 15px;
+
+			}
+
+			tr td:nth-child(odd){
+			  font-weight: 700;
+			}
+
+			div{
+				font-size: 12px;
+			}
+
+			hr{
+				margin: 5px 0;
+			}
+
+			h4{
+				margin: 0;
+				padding: 8px 12px;
+			}
+		</style>
+
+
+		
+	</head>
+
+
+
+
+	<body>
+		<div style="text-align: center">
+			<img src="https://via.placeholder.com/500x60" alt="">
+		  </div>
+		  <table>
+			<tr>
+				<td>Patient name</td>
+				<td>{{ client.name }}{{ client.surname }} </td>
+				<td>Organization</td>
+				<td>Albord labs- Madinah Al-Munawwarah</td>
+			</tr>
+			<tr>
+				<td>Id number</td>
+				<td>{{ client.identification_ID }}</td>
+				<td>Collection date</td>
+				<td>{{ client.time_deadline }}</td>
+			</tr>
+			<tr>
+				<td>Date of birth</td>
+				<td>{{ client.birth_day }}</td>
+				<td>Result date</td>
+				<td>{{ client.created_at }}</td>
+			</tr>
+			<tr>
+				<td>Nationality</td>
+				<td>{{ client.nationality }} respublic</td>
+				<td>Report number</td>
+				<td>358758</td>
+			</tr>
+			<tr>
+				<td>Phone nomber</td>
+				<td>{{ client.phone }}</td>
+				<td>HESN number</td>
+				<td>207893432</td>
+			</tr>
+		  </table>
+
+		  <hr>
+		  <h4>Results</h4>
+		  <hr>
+		  
+
+				{% if client.covid_test_result == 'Positive' %}
+					<h4 style="background-color: rgb(71, 180, 71);"> No Infected (Positive) </h4>
+				{% else %}
+					<h4 style="background-color: rgb(161, 19, 19);"> Infected (Negative) </h4>	
+				{% endif %}
+	
+			  
+		  <hr>
+		  <h4>Test Description</h4>
+		  <hr>
+		  <table>
+			<th style="text-align: left;">COVID_19 PCR Lorem ipsum dolor sit amet, consectetur adipisicing</th>
+			<tr>
+			  <td><span style="font-weight: 500">Title</span><br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores reiciendis quidem optio possimus, nulla quo cum nemo accusamus illo voluptatum et voluptatem aperiam rem praesentium commodi vitae error laboriosam asperiores?</td>
+			</tr>
+			<tr>
+			  <td><span style="font-weight: 500">Title</span><br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores reiciendis quidem optio possimus, nulla quo cum nemo accusamus illo voluptatum et voluptatem aperiam rem praesentium commodi vitae error laboriosam asperiores?</td>
+			</tr>
+			<tr>
+			  <td><span style="font-weight: 500">Title</span><br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores reiciendis quidem optio possimus, nulla quo cum nemo accusamus illo voluptatum et voluptatem aperiam rem praesentium commodi vitae error laboriosam asperiores? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos laboriosam ullam laudantium! Tempore earum temporibus numquam, ab, nam esse natus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos laboriosam ullam laudantium! Tempore earum temporibus numquam, ab, nam esse natus.</td>
+			</tr>
+		  </table>
+		  <table>
+			<tr>
+			  <td style="text-align: center"><img src="https://via.placeholder.com/128x30" alt="">
+			  <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero, corporis.</div></td>
+			  <td style="text-align: center;" rowspan="2">
+				<img src="https://via.placeholder.com/200x128" alt=""> <br>
+				<div style="text-align: left; margin-top: 10px">
+					Lorem ipsum dolor sit amet, consectetur <br> 
+					adipisicing elit. Dignissimos <br> 
+					laboriosam ullam <br> 
+					laboriosam ullam
+				</div>
+			</td>
+			</tr>
+			<tr>
+			  <td style="text-align: center"><img style="width: 200px;" src="{{ client.qr_code.path }}" alt=""></td>
+			</tr>
+		  </table>
+	</body>
+</html>

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+
+
+<div class="card_box">
+  <div class="card_box-thumb">
+    <img src='https://assets.materialup.com/uploads/3ec8a09d-a55c-400d-8dad-827836b116de/preview.jpg' alt=''>
+    
+  </div>
+  <div class="card_box-content">
+    <div style="width: 100%;">
+      <h3 id="time">{{  client.time_deadline|date:"d M Y H:i"  }}</h3>
+      <div class="card_box__list">
+        <div class="card_box__item"><span><i class="fa fa-user-circle"></i> Name:</span>{{ client.name }} {{ client.surname }}</div>
+        <hr>
+        <div class="card_box__item"><span><i class="fa fa-birthday-cake"></i> Date of birth:</span>{{ client.birth_day }}</div>
+        <hr>
+        <div class="card_box__item"><span><i class="fa fa-phone"></i> Mobile:</span>{{ client.phone }}</div>
+        <hr>
+        <div class="card_box__item"><span><i class="fa fa-map-marker"></i> Natioinality:</span>{{ client.nationality }} respublic</div>
+        <hr>
+        <div class="card_box__item"><span><i class="fa fa-address-card"></i> Identifaction type:</span>{{ client.identification_type }}</div>
+        <hr>
+        <div class="card_box__item"><span><i class="fa fa-id-card"></i> Identifaction ID:</span>{{ client.identification_ID }}</div>
+        <hr>
+        <div class="card_box__item"><span><i class="fa fa-user"></i> Gender:</span>{{  client.gender  }}</div>
+        <hr>
+        <div class="card_box__item"><span><i class="fa fa-bullhorn"></i> Result time:</span>{{  client.created_at  }}</div>
+        <div class="card_box__item"><span><i class="fa fa-user-md"></i> Result:</span><span id="result">{{  client.covid_test_result  }}</span></div>
+        <div class="card_box__item"><span><i class="fa fa-calendar-check"></i> Date to:</span><span>{{  client.time_deadline|date:"d M Y H:i"  }}</span></div>
+      </div>
+      <br/>
+      <div class="card_box__btn-container">
+        <a href="{% url 'client_pdf_view' client.pk %}" class="card_box-btn" target="_blank">Download</a>
+        <a href="https://telegram.me/share/url?url={{ request.build_absolute_uri }}&text={{ client.name }}{{ client.surname }}" class="card_box-btn" target="_blank">Share</a>
+       
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}
+    
